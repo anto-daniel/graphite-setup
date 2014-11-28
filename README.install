@@ -1,0 +1,16 @@
+************************ INSTALL COMPLETE! ***************************
+# Please create the mysql database to be used by graphite:
+
+echo 'create database graphite' | mysql -uroot -p
+#                                                ^^^^^^^
+# Use the password you set up during installation of mysql-server
+
+# and create the DB Schema using the following graphite script:
+cd /opt/graphite/webapp/graphite
+sudo python manage.py syncdb
+
+# following which, start carbon-cache and graphite-web as follows:
+sudo python manage.py runserver '0.0.0.0:8001'
+sudo /opt/graphite/bin/carbon-cache.py start
+
+**********************************************************************[
